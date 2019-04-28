@@ -10,7 +10,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    unless @book.status == "published" && @book.published_at < Time.current
+    unless @book.can_access?
       redirect_to root_path, notice: "アクセスできません"
     end
   end
